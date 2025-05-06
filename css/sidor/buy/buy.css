@@ -1,0 +1,17 @@
+.layout{
+    display: grid;
+    width: 100dvw;
+    height: 100dvh;
+    background-color: hotpink;
+    grid-template-columns: 2fr 10fr;
+    grid-template-rows: 2fr 10fr;
+}
+
+.sidebar{
+    background-color: blue;
+    grid-row: span 2;
+}
+
+.top-info{
+    background-color: yellowgreen;
+}

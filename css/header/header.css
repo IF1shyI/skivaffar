@@ -1,0 +1,68 @@
+@import url(../colors/colorp.css);
+
+:root{
+    --input-pad:20px;
+    --icon-w: calc(var(--input-pad) / 2);
+    --icon-r: calc(var(--input-pad) / 4);
+}
+
+header{
+    width: 100dvw;
+    height: 10dvh;
+    display: flex;
+    background-color: var(--color-primary-950);
+    align-items: center;
+    padding: 10px;
+    color: #fff;
+}
+
+
+header h1{
+    margin-right: 1rem;
+}
+
+h1 a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.search-container{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 200px;
+    height: 50%;
+}
+
+.search-container input{
+    padding-right: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.search-container .icon{
+    position: absolute;
+    right: var(--icon-r);
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: var(--icon-w);
+    cursor: pointer;
+}
+
+.h-btn-wrapper{
+    display: flex;
+    align-items: center;
+    place-content: space-evenly;
+    height: 50%;
+    width: fit-content;
+    margin-left: 2rem;
+}
+
+.h-btn-wrapper summary{
+    background-color: transparent;
+    border: none;
+    margin-right: 2rem;
+    user-select: none;
+    cursor: pointer;
+}
