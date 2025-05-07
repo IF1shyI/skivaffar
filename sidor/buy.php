@@ -12,14 +12,16 @@
 <body>
     <?php
     define('ROOT_PATH', dirname(__DIR__));
-    require_once "../mallar/header/header.php"
+    require_once "../mallar/header/header.php";
     ?>
     <div class="layout">
         <div class="sidebar"></div>
         <div class="top-info"></div>
-        <?php
-        require_once "../mallar/buy/album-list.php"
-        ?>
+        <div class="album-wrapper">
+            <?php
+            require_once "../mallar/buy/album-list.php";
+            ?>
+        </div>
     </div>
 
 </body>

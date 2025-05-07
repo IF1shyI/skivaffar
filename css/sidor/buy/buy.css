@@ -15,3 +15,12 @@
 .top-info{
     background-color: yellowgreen;
 }
+
+.album-wrapper{
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+}
