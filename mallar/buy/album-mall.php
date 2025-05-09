@@ -15,7 +15,7 @@ function renderAlbum(string $namn, string $pris, string $artist, string $img): s
                     <h2>$namn</h2>
                     <div class="price">$pris KR</div>
                 </div>
-                <p class="creator"><a href="/artister/{$artist}">$artist</a></p>
+                <p class="creator"><a href="sidor/artister/{$artist}.php">$artist</a></p>
             </div>
         </a>
     </div>
