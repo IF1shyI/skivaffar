@@ -2,10 +2,12 @@
 $header = <<<HTML
 <header>
     <h1><a href="/">UNWOUND</a></h1>
-    <div class="search-container">
-        <input type="text" class="search-input">
-        <div class="icon"><img src="../../skivaffar/public/bilder/m-glass.svg" alt=""></div>
-        <dialog class="search-results"></dialog>
+    <div class="search-wrapper">
+        <div class="search-container">
+            <input type="text" class="search-input">
+            <div class="icon"><img src="../../skivaffar/public/bilder/m-glass.svg" alt=""></div>
+        </div>
+        <dialog style="padding:0;" class="search-results anchor"></dialog>
     </div>
     <div class="h-btn-wrapper">
         <details>

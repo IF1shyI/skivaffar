@@ -6,12 +6,12 @@ function rendersearch($namn, $img, $artist)
     $img = htmlspecialchars($img);
 
     return <<<HTML
-    <div class="res-con">
+    <a href="skivaffar/sidor/album/{$namn}.php" class="res-con">
+        <img class="res-img" src="{$img}" alt="bild">
         <div class="info-con">
-            <img src="{$img}" alt="bild">
-            <p>$namn</p>
+            <p class="album-name">$namn</p>
+            <p class="artist-name">$artist</p>
         </div>
-        <p>$artist</p>
-    </div>
+    </a>
     HTML;
 }

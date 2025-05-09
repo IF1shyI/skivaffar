@@ -1,9 +1,5 @@
 @import "../colors/colorp.css";
 .search-results{
-    position: absolute;
-    bottom: -70%;
-    left: 0;
-    transform: translateY(50%);
     width: 200px;
     border: none;
     box-shadow: 0 0px 10px 5px #000;
