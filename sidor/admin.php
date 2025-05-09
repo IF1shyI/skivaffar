@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/sidor/admin/admivn.css">
+    <link rel="stylesheet" href="../css/sidor/admin/admin.css">
 </head>
 
 <body class="login-page">
-    <form class="form" method="get" action="admin.php">
+    <form class="form" method="post" action="admin.php">
         <p id="heading">Login</p>
         <div class="field">
             <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -28,43 +28,44 @@
         </div>
     </form>
 
-    <div id="message">
+    <div class="message">
         <?php
-        if ($_GET) {
-            echo "<h1>safasfs</h1>";
+        session_start();
+        require_once "../funktioner/db/connect.php";
+
+        if (!function_exists('connectToDb')) {
+            echo "<script>console.error('Funktionen connectToDb() hittades inte');</script>";
         }
-        // require_once "../funktioner/db/connect.php";
-        // if (!function_exists('connectToDb')) {
-        //     echo "<script>console.error('Funktionen connectToDb() hittades inte');</script>";
-        // }
 
-        // if (!empty($_POST['usr']) && !empty($_POST['psw'])) {
-        //     $usr = $_POST['usr'] ?? '';
-        //     $psw = $_POST['psw'] ?? '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usr = $_POST['usr'] ?? '';
+            $psw = $_POST['psw'] ?? '';
 
-        //     echo "<script>console.log('Username: " . addslashes($usr) . "');</script>";
+            try {
+                $pdo = connectToDb();
 
-        //     try {
-        //         $pdo = connectToDb();
+                $sql = "SELECT * FROM users WHERE username = :usr AND psw = :psw";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([
+                    ':usr' => $usr,
+                    ':psw' => $psw
+                ]);
 
-        //         $sql = "SELECT * FROM users WHERE username = :usr AND psw = :psw";
-        //         $stmt = $pdo->prepare($sql);
-        //         $stmt->execute([
-        //             ':usr' => $usr,
-        //             ':psw' => $psw
-        //         ]);
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        //         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        //         if ($user) {
-        //             echo "<p>Välkommen, {$user['username']}!</p>";
-        //         } else {
-        //             echo "<p style='color:red'>Felaktigt användarnamn eller lösenord.</p>";
-        //         }
-        //     } catch (PDOException $e) {
-        //         echo "<p style='color:red'>Databasfel: " . $e->getMessage() . "</p>";
-        //     }
-        // }
+                if ($user) {
+                    // Spara användarinformation i session
+                    $_SESSION['logged_in'] = true;
+                    $_SESSION['username'] = $user['username'];
+                    header("Location: admindesc.php");
+                    exit;
+                } else {
+                    echo "<p style='color:red;text-align:center;font-size:3rem;'>Felaktigt användarnamn eller lösenord.</p>";
+                }
+            } catch (PDOException $e) {
+                echo "<p style='color:red'>Databasfel: " . $e->getMessage() . "</p>";
+            }
+        }
         ?>
     </div>
 </body>

@@ -117,3 +117,13 @@
     background-color: red;
     color: white;
 }
+
+.message{
+    text-align: center;
+}
+
+.message p{
+    color: #fff;
+    font-size: 3rem;
+    width: fit-content;
+}
