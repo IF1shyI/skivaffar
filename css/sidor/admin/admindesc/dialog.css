@@ -1,0 +1,41 @@
+
+
+.close {
+    font-size: 16px;
+    padding: 0.25em 0.5em;
+    background: #1a252f;
+    color: white;
+    border: inherit;
+    position: absolute;
+    right: 0;
+    top: 0;
+    translate: 50% -50%;
+    border-radius: 5px;
+}
+dialog{
+    width: 50%;
+    height: 50%;
+    overflow: visible;
+    padding: 0;
+
+    opacity: 0;
+
+    transform: overlay 1s, display 1s, opacity 1s;
+    transition-behavior: allow-discrete;
+
+    &[open]{
+        opacity: 1;
+        display: block;
+        gap: 1rem;
+
+        @starting-style{
+            opacity: 0;
+        }
+    }
+}
+
+.dialog-content{
+    overflow-y: scroll;
+    max-block-size: 50vh;
+    padding: 1rem;
+}
