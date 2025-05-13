@@ -15,8 +15,8 @@ try {
     $artists = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Hämta alla album
-    $sql = "SELECT * FROM album
-            INNER JOIN artister ON album.owner = artister.rowid";
+    $sql = "SELECT * FROM albums
+            INNER JOIN artister ON albums.owner = artister.rowid";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $albums = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -28,7 +28,7 @@ try {
 <div id="music-content" class="hidden content-menu">
     <h2>🎵 Artister & Album</h2>
 
-    <input type="text" id="searchInput" placeholder="Sök efter artist eller album..." onkeyup="filterMusic()">
+    <input type="text" id="searchInput" placeholder="Sök efter artist eller album...">
 
     <button class="new-artist">➕ Ny artist</button>
     <button class="new-album">➕ Nytt album</button>
@@ -125,7 +125,7 @@ try {
         <div class="dialog-content">
             <button class="close">Stäng</button>
             <h1>Skapa album</h1>
-            <form action="POST">
+            <form method="POST">
                 <input type="hidden" name="form_type" value="create_album">
                 <label for="">
                     Album name:
@@ -168,10 +168,11 @@ try {
 
 <?php
 require_once __DIR__ . "/../../../funktioner/sendData/sendartist.php";
+require_once __DIR__ . "/../../../funktioner/sendData/sendalbum.php";
 if ($_POST && $_POST['form_type'] === 'create_artist') {
     sendArtist($_POST);
 }
 if ($_POST && $_POST['form_type'] === 'create_album') {
-    require_once "../../../funktioner/sendData/sendalbum.php";
+    sendAlbum($_POST);
 }
 ?>
