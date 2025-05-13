@@ -13,6 +13,22 @@ function sendAlbum($data)
 
         $pdo = connectToDb();
 
+        $sqlArtist = "SELECT rowid FROM artister WHERE artistname = :artistname LIMIT 1";
+        $stmtArtist = $pdo->prepare($sqlArtist);
+        $stmtArtist->execute([':artistname' => $artist]);
+        $artistData = $stmtArtist->fetch(PDO::FETCH_ASSOC);
+
+        if ($artistData) {
+            $artist_id = $artistData['rowid'];  // Hämta artistens ID från resultatet
+        } else {
+            // Om artisten inte finns, skapa en ny artist
+            // Vi skapar här en grundläggande artist (du kan lägga till fler fält om du vill)
+            $sqlCreateArtist = "INSERT INTO artists (artistname) VALUES (:artistname)";
+            $stmtCreateArtist = $pdo->prepare($sqlCreateArtist);
+            $stmtCreateArtist->execute([':artistname' => $artist]);
+            $artist_id = $pdo->lastInsertId();  // Hämta den nyligen skapade artistens ID
+        }
+
         // 1. Spara album
         $sql = "INSERT INTO albums (name, numsongs, picture, price, owner, year) 
                 VALUES (:name, :numsongs, :picture, :price, :owner, :year)";
@@ -22,7 +38,7 @@ function sendAlbum($data)
             ':numsongs' => count($songs),
             ':picture' => $picture,
             ':price' => $price,
-            ':owner' => $artist,
+            ':owner' => $artist_id,
             ':year' => $year
         ]);
 
@@ -38,7 +54,7 @@ function sendAlbum($data)
             if (!empty($title)) {
                 $stmtSong->execute([
                     ':songname' => $title,
-                    ':owner' => $artist,
+                    ':owner' => $artist_id,
                     ':year' => $year,
                     ':album' => $album_id
                 ]);
