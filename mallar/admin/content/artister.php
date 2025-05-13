@@ -79,7 +79,7 @@ try {
             <button type="submit">💾 Spara</button>
         </form>
     </div>
-    <dialog class="create-artist">
+    <dialog class="create-artist dialog-common">
         <div class="dialog-content">
             <button class="close">Stäng</button>
             <h1>Skapa artist</h1>
@@ -121,42 +121,43 @@ try {
             </form>
         </div>
     </dialog>
-    <dialog class="create-album">
+    <dialog class="create-album dialog-common">
         <div class="dialog-content">
             <button class="close">Stäng</button>
             <h1>Skapa album</h1>
             <form method="POST">
                 <input type="hidden" name="form_type" value="create_album">
-                <label for="">
+                <label>
                     Album name:
-                    <input type="text">
+                    <input type="text" name="albumname">
                 </label>
-                <label for="">
+                <label class="artist-suggestion">
                     Artist:
-                    <input type="text">
+                    <input type="text" name="artist" class="artist-suggestion-inp">
                 </label>
-                <label for="">
+                <dialog class="sug-box"></dialog>
+                <label>
                     År:
-                    <input type="number">
+                    <input type="number" name="year">
                 </label>
-                <label for="">
+                <label>
                     Pris:
-                    <input type="number">
+                    <input type="number" name="price">
                 </label>
-                <label for="">
+                <label>
                     Bildlänk:
-                    <input type="text">
+                    <input type="text" name="picture">
                 </label>
                 <div class="songlist">
                     <div class="song1">
                         <p>Låt 1:</p>
-                        <label for="">
+                        <label>
                             Namn:
-                            <input type="text">
+                            <input type="text" name="songs[]">
                         </label>
                     </div>
                 </div>
-                <button class="add-song">Lägg till låt</button>
+                <button type="button" class="add-song">Lägg till låt</button>
                 <button type="submit" class="submit-btn">Skapa album</button>
             </form>
         </div>
@@ -164,6 +165,8 @@ try {
 
     <script src="../mallar/admin/content/js/opendia.js"></script>
     <script src="../mallar/admin/content/js/songinput.js"></script>
+    <script src="../mallar/admin/content/js/sugestionArtist.js"></script>
+    <link rel="stylesheet" href="../css/sidor/admin/admindesc/suggestionbox.css">
 </div>
 
 <?php

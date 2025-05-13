@@ -12,7 +12,8 @@
     translate: 50% -50%;
     border-radius: 5px;
 }
-dialog{
+
+.dialog-common{
     width: 70%;
     height: 70%;
     overflow: visible;
@@ -22,6 +23,11 @@ dialog{
 
     transform: overlay 1s, display 1s, opacity 1s;
     transition-behavior: allow-discrete;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
 
     &[open]{
         opacity: 1;

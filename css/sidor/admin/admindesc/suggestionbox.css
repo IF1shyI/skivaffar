@@ -1,0 +1,31 @@
+.artist-suggestion{
+    position: relative;
+    anchor-name: --artist-anchor;
+}
+
+.sug-box{
+    position: absolute;
+    position-anchor: --artist-anchor;
+    position-area: bottom center;
+    width: 100%;
+    height: 20%;
+    border: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
+
+    &[open] {
+            display: block;
+        }
+}
+
+.sug-item{
+    cursor: pointer;
+    font-size: 1.1rem;
+
+    p{
+        margin: 0;
+    }
+}

@@ -18,6 +18,7 @@ document.querySelector(".add-song").addEventListener("click",()=>{
 
     let input = document.createElement("input");
     input.type = "text";
+    input.name = "songs[]";
 
     label.appendChild(input);
 })

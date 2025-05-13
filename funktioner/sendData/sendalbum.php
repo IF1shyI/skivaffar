@@ -23,7 +23,7 @@ function sendAlbum($data)
         } else {
             // Om artisten inte finns, skapa en ny artist
             // Vi skapar här en grundläggande artist (du kan lägga till fler fält om du vill)
-            $sqlCreateArtist = "INSERT INTO artists (artistname) VALUES (:artistname)";
+            $sqlCreateArtist = "INSERT INTO artister (artistname) VALUES (:artistname)";
             $stmtCreateArtist = $pdo->prepare($sqlCreateArtist);
             $stmtCreateArtist->execute([':artistname' => $artist]);
             $artist_id = $pdo->lastInsertId();  // Hämta den nyligen skapade artistens ID
