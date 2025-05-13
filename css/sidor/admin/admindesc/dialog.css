@@ -13,8 +13,8 @@
     border-radius: 5px;
 }
 dialog{
-    width: 50%;
-    height: 50%;
+    width: 70%;
+    height: 70%;
     overflow: visible;
     padding: 0;
 
@@ -36,6 +36,48 @@ dialog{
 
 .dialog-content{
     overflow-y: scroll;
-    max-block-size: 50vh;
+    max-block-size: 100vh;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.dialog-content input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.dialog-content input[type="text"]:focus {
+    border-color: #6c63ff;
+    outline: none;
+}
+
+.dialog-content .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #6c63ff;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dialog-content .submit-btn:hover {
+    background-color: #574b90;
 }

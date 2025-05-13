@@ -82,9 +82,44 @@ try {
     <dialog class="create-artist">
         <div class="dialog-content">
             <button class="close">Stäng</button>
+            <h1>Skapa artist</h1>
+            <label>
+                Artistnamn:
+                <input type="text" name="" id="">
+            </label>
+            <label>
+                Förnamn:
+                <input type="text" name="" id="">
+            </label>
+            <label>
+                Efternamn:
+                <input type="text">
+            </label>
+            <label>
+                Om text:
+                <input type="text">
+            </label>
+            <label>
+                Alias:
+                <input type="text">
+            </label>
+            <label>
+                Andra namn:
+                <input type="text">
+            </label>
+            <label>
+                Bildlänk:
+                <input type="text">
+            </label>
+            <button type="submit" class="submit-btn">Skapa artist</button>
         </div>
     </dialog>
-    <dialog class="create-album"></dialog>
+    <dialog class="create-album">
+        <div class="dialog-content">
+            <button class="close">Stäng</button>
+            <h1>Skapa album</h1>
+        </div>
+    </dialog>
 
     <script src="../mallar/admin/content/js/opendia.js" is:inline></script>
 </div>
