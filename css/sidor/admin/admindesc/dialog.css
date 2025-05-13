@@ -50,7 +50,7 @@ label {
     color: #333;
 }
 
-.dialog-content input[type="text"] {
+.dialog-content input {
     width: 100%;
     padding: 10px;
     margin-top: 6px;
@@ -60,12 +60,12 @@ label {
     transition: border-color 0.3s;
 }
 
-.dialog-content input[type="text"]:focus {
+.dialog-content input:focus {
     border-color: #6c63ff;
     outline: none;
 }
 
-.dialog-content .submit-btn {
+.dialog-content .submit-btn,.add-song {
     width: 100%;
     padding: 12px;
     background-color: #6c63ff;
@@ -78,6 +78,22 @@ label {
     transition: background-color 0.3s;
 }
 
-.dialog-content .submit-btn:hover {
+.dialog-content .submit-btn:hover,.add-song:hover {
     background-color: #574b90;
+}
+
+.add-song{
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+.songlist{
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 10px;
+
+    p{
+        font-weight: bold;
+    }
 }

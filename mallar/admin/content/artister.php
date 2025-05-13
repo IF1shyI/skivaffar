@@ -83,43 +83,95 @@ try {
         <div class="dialog-content">
             <button class="close">Stäng</button>
             <h1>Skapa artist</h1>
-            <label>
-                Artistnamn:
-                <input type="text" name="" id="">
-            </label>
-            <label>
-                Förnamn:
-                <input type="text" name="" id="">
-            </label>
-            <label>
-                Efternamn:
-                <input type="text">
-            </label>
-            <label>
-                Om text:
-                <input type="text">
-            </label>
-            <label>
-                Alias:
-                <input type="text">
-            </label>
-            <label>
-                Andra namn:
-                <input type="text">
-            </label>
-            <label>
-                Bildlänk:
-                <input type="text">
-            </label>
-            <button type="submit" class="submit-btn">Skapa artist</button>
+            <form method="POST" class="artist-form">
+                <input type="hidden" name="form_type" value="create_artist">
+                <label>
+                    Artistnamn:
+                    <input type="text" name="artistname">
+                </label>
+                <label>
+                    Förnamn:
+                    <input type="text" name="firstname">
+                </label>
+                <label>
+                    Efternamn:
+                    <input type="text" name="lastname">
+                </label>
+                <label>
+                    Startår:
+                    <input type="text" name="startyear">
+                </label>
+                <label>
+                    Om text:
+                    <input type="text" name="about">
+                </label>
+                <label>
+                    Alias:
+                    <input type="text" name="alias">
+                </label>
+                <label>
+                    Andra namn:
+                    <input type="text" name="surnames">
+                </label>
+                <label>
+                    Bildlänk:
+                    <input type="text" name="picture">
+                </label>
+                <button type="submit" class="submit-btn">Skapa artist</button>
+            </form>
         </div>
     </dialog>
     <dialog class="create-album">
         <div class="dialog-content">
             <button class="close">Stäng</button>
             <h1>Skapa album</h1>
+            <form action="POST">
+                <input type="hidden" name="form_type" value="create_album">
+                <label for="">
+                    Album name:
+                    <input type="text">
+                </label>
+                <label for="">
+                    Artist:
+                    <input type="text">
+                </label>
+                <label for="">
+                    År:
+                    <input type="number">
+                </label>
+                <label for="">
+                    Pris:
+                    <input type="number">
+                </label>
+                <label for="">
+                    Bildlänk:
+                    <input type="text">
+                </label>
+                <div class="songlist">
+                    <div class="song1">
+                        <p>Låt 1:</p>
+                        <label for="">
+                            Namn:
+                            <input type="text">
+                        </label>
+                    </div>
+                </div>
+                <button class="add-song">Lägg till låt</button>
+                <button type="submit" class="submit-btn">Skapa album</button>
+            </form>
         </div>
     </dialog>
 
-    <script src="../mallar/admin/content/js/opendia.js" is:inline></script>
+    <script src="../mallar/admin/content/js/opendia.js"></script>
+    <script src="../mallar/admin/content/js/songinput.js"></script>
 </div>
+
+<?php
+require_once __DIR__ . "/../../../funktioner/sendData/sendartist.php";
+if ($_POST && $_POST['form_type'] === 'create_artist') {
+    sendArtist($_POST);
+}
+if ($_POST && $_POST['form_type'] === 'create_album') {
+    require_once "../../../funktioner/sendData/sendalbum.php";
+}
+?>
