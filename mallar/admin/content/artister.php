@@ -103,7 +103,7 @@ try {
                 </label>
                 <label>
                     Om text:
-                    <input type="text" name="about">
+                    <textarea name="about"></textarea>
                 </label>
                 <label>
                     Alias:
