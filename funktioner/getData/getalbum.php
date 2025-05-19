@@ -29,9 +29,10 @@ function getAlbum($data)
             $songsInputs .= <<<HTML
             <div class="song{$i}">
                 <label>
-                    <p>Låt {$i}:</p>
+                    <p class="song-num">Låt {$i}:</p>
                     Namn:
                     <input type="text" name="songs[]" value="{$title}">
+                    <button type="button" class="rm-song" data-songnum="{$i}">Ta bort</button>
                 </label>
             </div>
             HTML;
@@ -66,6 +67,13 @@ function getAlbum($data)
                 
                 <button type="submit" class="submit-btn">💾 Spara</button>
             </form>
+            <button class="submit-btn rm-album">🗑️ Radera album</button>
+                <dialog class="rm-confirm dialog-common">
+                    <h1>Bekräfta att du vill ta bort albumet</h1>
+                    <p>Observera att denna åtgärd inte går att ångra när du har klickat på "Fortsätt".</p>
+                    <button class="submit-btn rm-deny">Avbryt</button>
+                    <button class="submit-btn rm-accept">Forsätt</button>
+                </dialog>
         HTML;
     } catch (PDOException $e) {
         echo "<p>Fel vid databaskoppling: " . $e->getMessage() . "</p>";

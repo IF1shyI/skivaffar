@@ -23,5 +23,13 @@ document.addEventListener("click", (e) => {
 
         label.appendChild(input);
         songcon.appendChild(label);
+
+        let rmbtn = document.createElement("button");
+        rmbtn.classList.add("rm-song");
+        rmbtn.type = "button";
+        rmbtn.dataset.songnum = num + 1
+        rmbtn.textContent = "Ta bort";
+
+        label.appendChild(rmbtn)
     }
 });

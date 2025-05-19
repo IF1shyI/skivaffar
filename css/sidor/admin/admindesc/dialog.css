@@ -107,3 +107,32 @@ label {
 textarea {
     field-sizing: content;
 }
+
+.rm-song{
+    width: fit-content;
+    background-color: #e23636;
+    padding: 0.5rem;
+    margin-top: 1em;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.rm-album{
+    margin-top: 1rem;
+    background-color: #e23636 !important;
+}
+
+.rm-confirm{
+    text-align: center;
+    padding-inline: 20px;
+
+    h1{
+        color: #e23636;
+    }
+}
+
+.rm-accept{
+    margin-top: 1rem;
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    color: #000 !important;
+}

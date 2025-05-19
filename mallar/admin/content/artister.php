@@ -161,6 +161,8 @@ try {
     <script src="../mallar/admin/content/js/songinput.js"></script>
     <script src="../mallar/admin/content/js/sugestionArtist.js"></script>
     <script src="../mallar/admin/content/js/openformedt.js"></script>
+    <script src="../mallar/admin/content/js/confirmation.js"></script>
+    <script src="../mallar/admin/content/js/rmsong.js"></script>
     <link rel="stylesheet" href="../css/sidor/admin/admindesc/suggestionbox.css">
 </div>
 
