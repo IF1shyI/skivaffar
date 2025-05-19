@@ -38,6 +38,8 @@ function getAlbum($data)
             HTML;
             $i++;
         }
+
+        $albumPicture = htmlspecialchars($albumData['picture'] ?? '');
         return <<<HTML
             <h1>Redigera album</h1>
             <form method="post">
@@ -57,7 +59,7 @@ function getAlbum($data)
                 </label>
                 <label >
                     Bild:
-                    <img src="{$albumData['picture']}" alt="albumbild.png" >
+                    <img src='{$albumPicture}' alt='albumbild.png' >
                     <input type="text" name="picture">
                 </label>
                 <div class="songlist">
