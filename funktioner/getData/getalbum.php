@@ -1,0 +1,76 @@
+<?php
+require_once "../db/connect.php";
+
+function getAlbum($data)
+{
+    try {
+
+        $artist = $data["artist"] ?? "";
+        $album = $data["album"] ?? "";
+
+        $pdo = connectToDb();
+
+        $sqlAlbum = "SELECT *
+            FROM albums
+            INNER JOIN songs ON songs.album = albums.rowid
+            INNER JOIN artister ON songs.owner = artister.rowid
+            WHERE albums.name = :albumname
+            AND artister.artistname = :artist";
+        $stmtAlbum = $pdo->prepare($sqlAlbum);
+        $stmtAlbum->execute([':albumname' => $album, ':artist' => $artist]);
+        $rows = $stmtAlbum->fetchAll(PDO::FETCH_ASSOC);
+
+        $albumData = $rows[0];
+
+        $songsInputs = "";
+        $i = 1;
+        foreach ($rows as $row) {
+            $title = htmlspecialchars($row['songname']); // säkerställa säker output
+            $songsInputs .= <<<HTML
+            <div class="song{$i}">
+                <label>
+                    <p>Låt {$i}:</p>
+                    Namn:
+                    <input type="text" name="songs[]" value="{$title}">
+                </label>
+            </div>
+            HTML;
+            $i++;
+        }
+        return <<<HTML
+            <h1>Redigera album</h1>
+            <form method="post">
+                <input type="hidden" name="form_type" value="update_album">
+                <label >
+                    Albumnamn:
+                    <input type="text" value="{$albumData['name']}">
+                </label>
+                <label >
+                    Pris (KR):
+                    <input type="number" value="{$albumData['price']}">
+                </label>
+                <label >
+                    År:
+                    <input type="number" value="{$albumData['year']}">
+                </label>
+                <label >
+                    Bild:
+                    <img src="{$albumData['picture']}" alt="albumbild.png">
+                    <input type="text">
+                </label>
+                <div class="songlist">
+                    {$songsInputs}
+                </div>
+                <button type="button" class="add-song">Lägg till låt</button>
+                
+                <button type="submit" class="submit-btn">💾 Spara</button>
+            </form>
+        HTML;
+    } catch (PDOException $e) {
+        echo "<p>Fel vid databaskoppling: " . $e->getMessage() . "</p>";
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['artist']) && isset($_POST['album'])) {
+    echo getAlbum($_POST);
+}

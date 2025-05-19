@@ -39,7 +39,7 @@ try {
             <?php foreach ($artists as $artist): ?>
                 <li class="music-item">
                     <?= htmlspecialchars($artist['artistname']) ?>
-                    <button>✏️ Redigera</button>
+                    <button class="artist-btn <?= htmlspecialchars($artist['artistname']) ?>">✏️ Redigera</button>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -51,7 +51,7 @@ try {
             <?php foreach ($albums as $album): ?>
                 <li class="music-item">
                     <?= htmlspecialchars($album['name']) ?> (<?= $album['artistname'] ?>)
-                    <button>✏️ Redigera</button>
+                    <button class="album-btn" data-album="<?= htmlspecialchars($album['name']) ?>" data-artist="<?= $album['artistname'] ?>">✏️ Redigera</button>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -66,19 +66,11 @@ try {
         </form>
     </div>
 
-    <div id="album-form" class="hidden-form">
-        <h4>Lägg till/Redigera Album</h4>
-        <form>
-            <input type="hidden" name="album_id">
-            <input type="text" name="album_title" placeholder="Albumnamn">
-            <select name="album_artist">
-                <?php foreach ($artists as $artist): ?>
-                    <option value="<?= $artist['id'] ?>"><?= htmlspecialchars($artist['name']) ?></option>
-                <?php endforeach; ?>
-            </select>
-            <button type="submit">💾 Spara</button>
-        </form>
-    </div>
+    <dialog class="edt-info dialog-common">
+        <div class="dialog-content">
+            <button class="close">Stäng</button>
+        </div>
+    </dialog>
     <dialog class="create-artist dialog-common">
         <div class="dialog-content">
             <button class="close">Stäng</button>
@@ -162,17 +154,20 @@ try {
             </form>
         </div>
     </dialog>
+    <div class="edit-album-wapper hidden">
+    </div>
 
     <script src="../mallar/admin/content/js/opendia.js"></script>
     <script src="../mallar/admin/content/js/songinput.js"></script>
     <script src="../mallar/admin/content/js/sugestionArtist.js"></script>
+    <script src="../mallar/admin/content/js/openformedt.js"></script>
     <link rel="stylesheet" href="../css/sidor/admin/admindesc/suggestionbox.css">
 </div>
 
 <?php
 require_once __DIR__ . "/../../../funktioner/sendData/sendartist.php";
 require_once __DIR__ . "/../../../funktioner/sendData/sendalbum.php";
-if ($_POST && $_POST['form_type'] === 'create_artist') {
+if ($_POST && in_array($_POST['form_type'], ['create_artist', 'update_artist'])) {
     sendArtist($_POST);
 }
 if ($_POST && $_POST['form_type'] === 'create_album') {
