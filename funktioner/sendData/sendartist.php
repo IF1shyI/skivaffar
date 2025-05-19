@@ -30,8 +30,6 @@ function sendArtist($data)
         }
         $pdo = connectToDb();
 
-
-        error_log("Artist: " . $artistname);
         $sql = "SELECT * FROM artister WHERE artistname = :artistname";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':artistname' => $artistname]);

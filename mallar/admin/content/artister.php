@@ -170,7 +170,7 @@ require_once __DIR__ . "/../../../funktioner/sendData/sendalbum.php";
 if ($_POST && in_array($_POST['form_type'], ['create_artist', 'update_artist'])) {
     sendArtist($_POST);
 }
-if ($_POST && $_POST['form_type'] === 'create_album') {
+if ($_POST && in_array($_POST['form_type'], ['create_album', 'update_album'])) {
     sendAlbum($_POST);
 }
 ?>

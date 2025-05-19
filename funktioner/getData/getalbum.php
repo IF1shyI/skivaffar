@@ -41,22 +41,23 @@ function getAlbum($data)
             <h1>Redigera album</h1>
             <form method="post">
                 <input type="hidden" name="form_type" value="update_album">
+                <input type="hidden" name="artist" value="{$albumData['artistname']}">
                 <label >
                     Albumnamn:
-                    <input type="text" value="{$albumData['name']}">
+                    <input type="text" value="{$albumData['name']}" name="albumname">
                 </label>
                 <label >
                     Pris (KR):
-                    <input type="number" value="{$albumData['price']}">
+                    <input type="number" value="{$albumData['price']}" name="price">
                 </label>
                 <label >
                     År:
-                    <input type="number" value="{$albumData['year']}">
+                    <input type="number" value="{$albumData['year']}" name="year">
                 </label>
                 <label >
                     Bild:
-                    <img src="{$albumData['picture']}" alt="albumbild.png">
-                    <input type="text">
+                    <img src="{$albumData['picture']}" alt="albumbild.png" >
+                    <input type="text" name="picture">
                 </label>
                 <div class="songlist">
                     {$songsInputs}
