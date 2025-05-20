@@ -1,0 +1,131 @@
+/* Grund */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f8fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.artist-profil {
+    max-width: 100dvw;
+    margin: 50px auto;
+    background-color: #fff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 30px 40px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.artist-bild {
+    flex: 0 0 280px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease;
+}
+
+.artist-bild img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.artist-bild:hover {
+    transform: scale(1.05);
+}
+
+.Fakta {
+    flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Fakta h2 {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.Fakta p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #555;
+    margin-top: 0;
+}
+
+.Köp {
+    flex: 0 0 200px;
+    background-color: #1e90ff;
+    border-radius: 10px;
+    color: white;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(30, 144, 255, 0.4);
+    transition: background-color 0.3s ease;
+}
+
+.Köp strong {
+    font-size: 1.3rem;
+}
+
+.Köp a {
+    color: #e0eaff;
+    font-weight: 600;
+    margin: 10px 0 20px 0;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.Köp a:hover,
+.Köp a:focus {
+    text-decoration: underline;
+}
+
+.shop-button {
+    background-color: #005bb5;
+    border: none;
+    padding: 14px 24px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+}
+
+.shop-button:hover,
+.shop-button:focus {
+    background-color: #003f7f;
+}
+
+/* Anpassning för mindre skärmar */
+@media (max-width: 768px) {
+    .artist-profil {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .artist-bild,
+    .Fakta,
+    .Köp {
+        flex: 1 1 100%;
+    }
+
+    .artist-bild {
+        margin-bottom: 30px;
+    }
+
+    .Köp {
+        margin-top: 30px;
+    }
+}

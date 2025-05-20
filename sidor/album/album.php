@@ -47,7 +47,6 @@ foreach ($albums as $song) {
     <title>Unwound || <?= htmlspecialchars($album['name']) ?></title>
     <link rel="stylesheet" href="../../css/header/header.css">
     <link rel="stylesheet" href="../../css/main/main.css">
-    <link rel="stylesheet" href="../../css/sidor/artister/taylor-swift.css">
     <link rel="stylesheet" href="../../css/sidor/album/album.css">
 </head>
 

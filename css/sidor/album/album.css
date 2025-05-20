@@ -1,13 +1,149 @@
-.songlist{
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(0, 0, 0, 0.2);
-    width: 70dvw;
-    height: fit-content;
-    padding-inline: 1rem;
-    border-radius: 20px;
+/* Grundläggande reset och typsnitt */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-.song{
-    border-bottom: 1px solid #000;
+.artist-profil {
+    max-width: 100dvw;
+    margin: 40px auto;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 30px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.artist-bild {
+    flex: 0 0 280px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.artist-bild img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.artist-bild img:hover {
+    transform: scale(1.05);
+}
+
+.Fakta {
+    flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Fakta h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #222;
+}
+
+.Fakta h2 a {
+    color: #0077cc;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.Fakta h2 a:hover,
+.Fakta h2 a:focus {
+    color: #005999;
+    text-decoration: underline;
+}
+
+.Fakta p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-top: 0;
+}
+
+.Köp {
+    flex: 0 0 180px;
+    background: #0077cc;
+    border-radius: 8px;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 119, 204, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+.Köp strong {
+    font-size: 1.2rem;
+}
+
+.Köp a {
+    color: #ffe;
+    font-weight: 600;
+    margin: 8px 0 16px 0;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.Köp a:hover,
+.Köp a:focus {
+    text-decoration: underline;
+}
+
+.shop-button {
+    background-color: #005999;
+    border: none;
+    padding: 12px 20px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.shop-button:hover,
+.shop-button:focus {
+    background-color: #004477;
+}
+
+.songlist {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.songlist h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #222;
+    border-bottom: 2px solid #0077cc;
+    padding-bottom: 6px;
+}
+
+.song {
+    background: #f5f5f5;
+    margin-bottom: 10px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 1.1rem;
+    transition: background-color 0.2s ease;
+    cursor: default;
+}
+
+.song:hover {
+    background-color: #e0eaff;
+    cursor: pointer;
 }

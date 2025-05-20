@@ -1,7 +1,7 @@
 <?php
 $header = <<<HTML
 <header>
-    <h1><a href="/">UNWOUND</a></h1>
+    <h1><a href="/skivaffar">UNWOUND</a></h1>
     <div class="search-wrapper">
         <div class="search-container">
             <input type="text" class="search-input">
