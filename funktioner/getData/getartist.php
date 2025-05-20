@@ -66,6 +66,13 @@ function getArtist($data)
                 </label>
                 <button type="submit" class="submit-btn">💾 Spara</button>
             </form>
+            <button class="submit-btn rm-album">🗑️ Radera album</button>
+                <dialog class="rm-confirm dialog-common">
+                    <h1>Bekräfta att du vill ta bort albumet</h1>
+                    <p>Observera att denna åtgärd inte går att ångra när du har klickat på "Fortsätt".</p>
+                    <button class="submit-btn rm-deny">Avbryt</button>
+                    <button class="submit-btn rm-accept" data-artist="{$artistData['artistname']}">Forsätt</button>
+                </dialog>
         HTML;
     } catch (PDOException $e) {
         echo "<p>Fel vid databaskoppling: " . $e->getMessage() . "</p>";

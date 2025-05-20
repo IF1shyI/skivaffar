@@ -74,7 +74,7 @@ function getAlbum($data)
                     <h1>Bekräfta att du vill ta bort albumet</h1>
                     <p>Observera att denna åtgärd inte går att ångra när du har klickat på "Fortsätt".</p>
                     <button class="submit-btn rm-deny">Avbryt</button>
-                    <button class="submit-btn rm-accept">Forsätt</button>
+                    <button class="submit-btn rm-accept" data-album="{$albumData['name']}">Forsätt</button>
                 </dialog>
         HTML;
     } catch (PDOException $e) {

@@ -8,12 +8,12 @@ try {
 
     $sql = "
     SELECT 
-    album.name AS album_namn,
-    album.price AS album_pris,
+    albums.name AS album_namn,
+    albums.price AS album_pris,
     artister.artistname AS artistnamn,
-    album.picture AS album_picture
-    FROM album
-    INNER JOIN artister ON album.owner = artister.rowid
+    albums.picture AS album_picture
+    FROM albums
+    INNER JOIN artister ON albums.owner = artister.rowid
     ";
     $stmt = $pdo->query($sql);
     $album = $stmt->fetchAll(PDO::FETCH_ASSOC);
