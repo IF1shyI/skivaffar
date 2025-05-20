@@ -39,7 +39,7 @@ try {
             <?php foreach ($artists as $artist): ?>
                 <li class="music-item">
                     <?= htmlspecialchars($artist['artistname']) ?>
-                    <button class="artist-btn <?= htmlspecialchars($artist['artistname']) ?>">✏️ Redigera</button>
+                    <button class="artist-btn" data-artist="<?= htmlspecialchars($artist['artistname']) ?>">✏️ Redigera</button>
                 </li>
             <?php endforeach; ?>
         </ul>

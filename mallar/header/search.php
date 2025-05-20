@@ -12,13 +12,13 @@ try {
     if ($query) {
         // Prepare and execute query safely
         $stmt = $pdo->prepare("
-        SELECT album.name, artister.artistname, album.picture
-        FROM album
-        INNER JOIN artister ON album.owner = artister.rowid
-        WHERE album.name LIKE :search
+        SELECT albums.name, artister.artistname, albums.picture
+        FROM albums
+        INNER JOIN artister ON albums.owner = artister.rowid
+        WHERE albums.name LIKE :search
         LIMIT 10;
         ");
-        $stmt->execute(['search' => "$query%"]);
+        $stmt->execute([':search' => "$query%"]);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($results as $row) {

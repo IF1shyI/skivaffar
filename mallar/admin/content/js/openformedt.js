@@ -3,13 +3,13 @@ let editwindow = document.querySelector(".edt-info")
 // ARTISTER
 document.querySelectorAll(".artist-btn").forEach((button) =>{
     button.addEventListener("click", ()=>{
-        console.log(button.classList[1])
+        console.log(button.dataset.artist)
         fetch("/skivaffar/funktioner/getData/getartist.php",{
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
-            body: `artist=${encodeURIComponent(button.classList[1])}`
+            body: `artist=${encodeURIComponent(button.dataset.artist)}`
         })
         .then(res => res.text())
         .then(html => {

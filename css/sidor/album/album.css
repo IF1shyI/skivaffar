@@ -1,0 +1,13 @@
+.songlist{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(0, 0, 0, 0.2);
+    width: 70dvw;
+    height: fit-content;
+    padding-inline: 1rem;
+    border-radius: 20px;
+}
+
+.song{
+    border-bottom: 1px solid #000;
+}

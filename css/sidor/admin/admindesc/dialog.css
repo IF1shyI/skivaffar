@@ -136,3 +136,9 @@ textarea {
     background-color: rgba(0, 0, 0, 0.1) !important;
     color: #000 !important;
 }
+
+.picture img{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
