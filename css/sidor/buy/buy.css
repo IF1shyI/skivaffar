@@ -1,26 +1,125 @@
-.layout{
-    display: grid;
-    width: 100dvw;
-    height: 100dvh;
-    background-color: hotpink;
-    grid-template-columns: 2fr 10fr;
-    grid-template-rows: 2fr 10fr;
-}
-
-.sidebar{
-    background-color: blue;
-    grid-row: span 2;
-}
-
-.top-info{
-    background-color: yellowgreen;
-}
-
-.album-wrapper{
-    padding: 10px;
+/* Layout och grid */
+.layout {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 1rem;
+    min-height: 100vh;
+    background-color: #f5f7fa;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.sidebar ul li a:hover {
+    color: #fff;
+}
+
+/* Huvudinnehåll */
+.content {
+    flex: 1;
+    padding: 30px 40px;
+}
+
+/* Top-info och sökruta */
+.top-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.top-info h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.search-bar {
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    transition: box-shadow 0.2s ease;
+}
+
+.search-bar:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #007bff55;
+    border-color: #007bff;
+}
+
+/* Albumkort */
+.album-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.album-con {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    text-align: center;
+    padding: 15px;
+}
+
+.album-con img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.album-con p {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+}
+
+.album-con:hover {
+    transform: scale(1.03);
+}
+
+/* Responsiv sidebar */
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .top-info {
+        align-items: center;
+        text-align: center;
+    }
 }

@@ -1,22 +1,21 @@
-/* Grund */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f7f8fa;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
+
 
 .artist-profil {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     max-width: 100dvw;
     margin: 50px auto;
-    background-color: #fff;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    border-radius: 10px;
     padding: 30px 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.artist-info {
     display: flex;
-    gap: 40px;
     flex-wrap: wrap;
+    gap: 40px;
 }
 
 .artist-bild {
@@ -25,6 +24,7 @@ body {
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     transition: transform 0.3s ease;
+    max-height: 300px;
 }
 
 .artist-bild img {
@@ -108,24 +108,67 @@ body {
     background-color: #003f7f;
 }
 
+.albums {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: flex-start;
+}
+
+.album-con {
+    width: 180px;
+    background-color: #f2f4f7;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.album-con:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.album-con img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.album-con p {
+    font-weight: 600;
+    color: #222;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+h3{
+    margin: 0;
+    font-size: 2rem;
+}
+
 /* Anpassning för mindre skärmar */
 @media (max-width: 768px) {
-    .artist-profil {
+    .artist-info {
         flex-direction: column;
-        padding: 20px;
+        align-items: center;
     }
 
-    .artist-bild,
-    .Fakta,
-    .Köp {
-        flex: 1 1 100%;
+    .albums {
+        justify-content: center;
     }
 
-    .artist-bild {
-        margin-bottom: 30px;
+    .album-con {
+        width: 45%;
     }
+}
 
-    .Köp {
-        margin-top: 30px;
+@media (max-width: 480px) {
+    .album-con {
+        width: 100%;
     }
 }

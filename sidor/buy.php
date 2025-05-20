@@ -15,13 +15,26 @@
     require_once "../mallar/header/header.php";
     ?>
     <div class="layout">
-        <div class="sidebar"></div>
-        <div class="top-info"></div>
-        <div class="album-wrapper">
-            <?php
-            require_once "../mallar/buy/album-list.php";
-            ?>
-        </div>
+        <aside class="sidebar">
+            <h3>Kategorier</h3>
+            <ul>
+                <li><a href="#">Alla</a></li>
+                <li><a href="#">Rock</a></li>
+                <li><a href="#">Pop</a></li>
+                <li><a href="#">Jazz</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <section class="top-info">
+                <h1>Utforska Musik</h1>
+                <input type="text" class="search-bar" placeholder="Sök efter artist eller album...">
+            </section>
+
+            <section class="album-wrapper">
+                <?php require_once "../mallar/buy/album-list.php"; ?>
+            </section>
+        </main>
     </div>
 
 </body>

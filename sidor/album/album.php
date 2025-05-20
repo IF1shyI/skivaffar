@@ -66,7 +66,6 @@ foreach ($albums as $song) {
         </div>
 
         <div class="Köp">
-            <p><strong>Till salu</strong><br><a href="#">10 exemplar</a></p>
             <button class="shop-button">Köp nu</button>
         </div>
 
