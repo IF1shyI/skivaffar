@@ -35,7 +35,7 @@ function getRating($albumname)
             }
         }
         $starCon = <<<HTML
-            <div class="star-con">
+            <div class="star-con" data-album="{$albumname}">
                 $stars
             </div>
         HTML;
