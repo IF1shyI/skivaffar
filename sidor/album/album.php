@@ -1,5 +1,6 @@
 <?php
 require_once "../../funktioner/db/connect.php";
+require_once __DIR__ . "/../../funktioner/rating/rating.php";
 
 $albumname = $_GET['album'] ?? '';
 
@@ -66,6 +67,10 @@ foreach ($albums as $song) {
         </div>
 
         <div class="Köp">
+            <div class="rating">
+                <?= getRating($title); ?>
+                <script src="../../funktioner/rating/updatelive.js"></script>
+            </div>
             <button class="shop-button">Köp nu</button>
         </div>
 

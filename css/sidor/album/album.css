@@ -147,3 +147,25 @@ body {
     background-color: #e0eaff;
     cursor: pointer;
 }
+
+.rating{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 1rem;
+    text-align: center;
+    justify-content: center;
+}
+
+.star-con{
+    margin-right: 8px;
+}
+
+.rating-star{
+    user-select: none;
+}
+
+.rating-val{
+    user-select: none;
+    cursor: pointer;
+}

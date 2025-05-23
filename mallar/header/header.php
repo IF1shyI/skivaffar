@@ -4,6 +4,9 @@ require_once __DIR__ . "/../../config.php";
 
 $shopURL = BASE_URL . "/sidor/buy.php";
 
+$st1url = __DIR__ . "../../css/header/header.css";
+$st2url = __DIR__ . "../../css/header/search.css";
+
 $header = <<<HTML
 <header>
     <h1><a href="/skivaffar">UNWOUND</a></h1>
