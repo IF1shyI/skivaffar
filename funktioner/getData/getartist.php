@@ -28,7 +28,8 @@ function getArtist($data)
         }
 
         return <<<HTML
-            <h1>Redigera artist</h1>
+            <h1>Redigera artist</h1> 
+            <button type="button" class="submit-btn rm-album">🗑️ Ta bort artist + album</button>
             <form method="post">
                 <input type="hidden" name="form_type" value="update_artist">
                 <label >
@@ -66,9 +67,9 @@ function getArtist($data)
                 </label>
                 <button type="submit" class="submit-btn">💾 Spara</button>
             </form>
-            <button class="submit-btn rm-album">🗑️ Radera album</button>
+            <button class="submit-btn rm-album">🗑️ Radera artist</button>
                 <dialog class="rm-confirm dialog-common">
-                    <h1>Bekräfta att du vill ta bort albumet</h1>
+                    <h1>Bekräfta att du vill ta bort Artisten</h1>
                     <p>Observera att denna åtgärd inte går att ångra när du har klickat på "Fortsätt".</p>
                     <button class="submit-btn rm-deny">Avbryt</button>
                     <button class="submit-btn rm-accept" data-artist="{$artistData['artistname']}">Forsätt</button>

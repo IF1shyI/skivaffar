@@ -68,8 +68,11 @@ foreach ($albums as $song) {
 
         <div class="Köp">
             <div class="rating">
-                <?= getRating($title); ?>
+                <?= getRating($albumname); ?>
                 <script src="../../funktioner/rating/updatelive.js"></script>
+            </div>
+            <div class="price">
+                <?= $album["price"] ?> KR
             </div>
             <button class="shop-button">Köp nu</button>
         </div>

@@ -25,17 +25,17 @@ document.addEventListener("click", (e) => {
 
         console.log("✅ Skickar betyg:", rating, "för album:", albumname);
 
-        fetch("/skivaffar/funktioner/rating/sendrating.php", {
+        fetch("/skivaffar/funktioner/rating/sendrating.php", { 
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
-            body: `rating=${encodeURIComponent(rating)}&albumname=${encodeURIComponent(albumname)}`
+            body: `rating=${encodeURIComponent(rating)}&albumname=${albumname}`
         })
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                alert("✅ Betyget sparades!");
+                console.log("✅ Betyget sparades!");
             } else {
                 console.error("❌ Svarsfel:", data.error);
                 alert("Fel vid betygssparning: " + data.error);
@@ -47,3 +47,4 @@ document.addEventListener("click", (e) => {
         });
     }
 });
+

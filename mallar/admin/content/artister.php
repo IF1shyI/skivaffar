@@ -25,7 +25,7 @@ try {
 }
 ?>
 
-<div id="music-content" class="hidden content-menu">
+<div id="music-content" class="content-menu">
     <h2>🎵 Artister & Album</h2>
 
     <input type="text" id="searchInput" placeholder="Sök efter artist eller album...">

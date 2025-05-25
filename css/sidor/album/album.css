@@ -73,7 +73,7 @@ body {
 
 .Köp {
     flex: 0 0 180px;
-    background: #0077cc;
+    background: #1a1a1a;
     border-radius: 8px;
     color: #fff;
     padding: 20px;
@@ -128,7 +128,7 @@ body {
     font-size: 1.8rem;
     margin-bottom: 20px;
     color: #222;
-    border-bottom: 2px solid #0077cc;
+    border-bottom: 2px solid #1a1a1a;
     padding-bottom: 6px;
 }
 
@@ -168,4 +168,15 @@ body {
 .rating-val{
     user-select: none;
     cursor: pointer;
+    transition: text-decoration 0.3s ease;
+}
+
+.rating-val:hover{
+    text-decoration: underline;
+}
+
+.price{
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #4CAF50;
 }

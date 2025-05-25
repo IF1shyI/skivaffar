@@ -1,58 +1,77 @@
 <?php
 require_once __DIR__ . "/../db/connect.php";
 
+error_log("📥 getRating.php anropad");
+
+function median(array $arr)
+{
+    sort($arr);
+    $count = count($arr);
+    $middle = floor(($count - 1) / 2);
+
+    if ($count === 0) {
+        return 0;
+    }
+
+    if ($count % 2) { // udda antal
+        return $arr[$middle];
+    } else { // jämnt antal
+        return ($arr[$middle] + $arr[$middle + 1]) / 2;
+    }
+}
+
 function getRating($albumname)
 {
     try {
+        error_log("🎧 Försöker hämta betyg för album: " . var_export($albumname, true));
 
-        // Kontrollera om alla fält är tomma
         if (empty($albumname)) {
+            error_log("⚠️ Inget albumnamn angivet.");
             return;
         }
 
         $pdo = connectToDb();
 
-        // Kolla om artisten finns
-        $sql = "SELECT albums.rating, ratings.*
-                FROM albums
-                INNER JOIN ratings ON ratings.albumnum = albums.rowid
+        // Hämta alla grade för albumet
+        $sql = "SELECT grade FROM ratings 
+                INNER JOIN albums ON albums.rowid = ratings.albumnum
                 WHERE albums.name = :albumname";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':albumname' => $albumname]);
-        $datarows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $grades = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-        $rating = 0;
-        $wrapper = "";
-        $stars = "";
+        error_log("📊 Antal betyg hittade: " . count($grades));
 
-        if (count($datarows) > 0) {
-            $data = $datarows[0];
+        if (count($grades) === 0) {
+            error_log("ℹ️ Inga betyg hittade, visar tomma stjärnor.");
+            $medianGrade = 0;
         } else {
-            for ($i = 0; $i < 5; $i++) {
-                $stars .= <<<HTML
-                    <img class="rating-star {$i}" src="../../public/bilder/stars/empty.svg" alt="tom">
-                HTML;
+            $median = median($grades);
+            // Avrunda till närmaste heltal
+            $medianGrade = (int) round($median);
+            error_log("✅ Median (avrundad) för betyg: $medianGrade");
+        }
+
+        $starsHtml = "";
+        for ($i = 0; $i < 5; $i++) {
+            if ($i < $medianGrade) {
+                $starsHtml .= '<img class="rating-star ' . $i . '" src="../../public/bilder/stars/full.svg" alt="full">';
+            } else {
+                $starsHtml .= '<img class="rating-star ' . $i . '" src="../../public/bilder/stars/empty.svg" alt="tom">';
             }
         }
-        $starCon = <<<HTML
+
+        $wrapper = <<<HTML
             <div class="star-con" data-album="{$albumname}">
-                $stars
+                {$starsHtml}
             </div>
+            <div class="rating-val">{$medianGrade}</div>
         HTML;
-        $ratingdiv = <<<HTML
-                    <div class="rating-val">{$rating}</div>
-                HTML;
-        $ratings = "";
-        for ($i = 0; $i < count($datarows); $i++) {
-            $ratings .= <<<HTML
-                    <img src="../../public/bilder/stars/empty.svg" alt="tom">
-                HTML;
-        }
-        $wrapper .= $starCon;
-        $wrapper .= $ratingdiv;
 
         echo $wrapper;
+        error_log("✅ getRating slutförd utan fel.");
     } catch (PDOException $e) {
-        echo "<p>Fel vid databasanrop: " . $e->getMessage() . "</p>";
+        error_log("❌ Databasfel i getRating: " . $e->getMessage());
+        echo "<p>Fel vid databasanrop: " . htmlspecialchars($e->getMessage()) . "</p>";
     }
 }
