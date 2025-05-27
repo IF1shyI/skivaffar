@@ -1,9 +1,16 @@
 <?php
 require_once __DIR__ . "/../db/connect.php";
 
-// Sätt header så klienten vet att det är JSON
+// Sätt header så klienten vet att svaret är JSON
 header('Content-Type: application/json');
 
+/**
+ * Funktion som sparar ett betyg och en text för ett album i databasen.
+ * @param int|string $rating - betygsvärdet som skickas in
+ * @param string $albumname - namnet på albumet
+ * @param string $ratingtxt - texten/recensionen till betyget (kan vara tom)
+ * @return array - resultatet av operationen (success + eventuell error)
+ */
 function sendRating($rating, $albumname, $ratingtxt)
 {
     try {
@@ -12,14 +19,16 @@ function sendRating($rating, $albumname, $ratingtxt)
         error_log("Albumname: " . var_export($albumname, true));
         error_log("Text: " . var_export($ratingtxt, true));
 
+        // Kontrollera att betyg och albumnamn finns
         if (empty($rating) || empty($albumname)) {
             error_log("❌ Rating eller albumname saknas.");
             return ['success' => false, 'error' => 'Betyg eller albumnamn saknas.'];
         }
 
+        // Anslut till databasen
         $pdo = connectToDb();
 
-        // Hämta albumets ID
+        // Hämta albumets ID med namn (case-insensitive)
         $sql = "SELECT rowid FROM albums WHERE albums.name = :albumname COLLATE NOCASE LIMIT 1";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':albumname' => $albumname]);
@@ -32,7 +41,7 @@ function sendRating($rating, $albumname, $ratingtxt)
 
         $album_id = $data['rowid'];
 
-        // Spara betyget
+        // Spara betyget i ratings-tabellen
         $sql = "INSERT INTO ratings (albumnum, ratingtxt, grade) VALUES (:albumnum, :ratingtext, :rating)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([

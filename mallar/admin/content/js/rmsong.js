@@ -1,15 +1,21 @@
-document.addEventListener("click", (e)=>{
-    if (e.target.matches(".rm-song")){
-        console.log("hej");
-        e.preventDefault();
-        e.stopPropagation();
-        document.querySelector(`.song${e.target.dataset.songnum}`).remove();
+// Lyssnar på alla klick på dokumentet
+document.addEventListener("click", (e) => {
+    
+    // Om klicket sker på ett element med klassen .rm-song (ta bort låt)
+    if (e.target.matches(".rm-song")) {
 
-        let i = 1
-        document.querySelectorAll(".song-num").forEach((song)=>{
-            song.textContent = "Låt " + i +":";
+        e.preventDefault();      // Förhindra eventuell standardbeteende (t.ex. länk)
+        e.stopPropagation();     // Stoppa vidare bubbla av händelsen
 
-            i++
-        })
+        // Ta bort motsvarande låtelement baserat på data-attribut
+        const songElement = document.querySelector(`.song${e.target.dataset.songnum}`);
+        if (songElement) songElement.remove();
+
+        // Uppdatera numreringen för kvarvarande låtar
+        let i = 1;
+        document.querySelectorAll(".song-num").forEach((song) => {
+            song.textContent = "Låt " + i + ":"; // Ändra t.ex. till "Låt 1:", "Låt 2:", osv.
+            i++;
+        });
     }
-})
+});

@@ -1,15 +1,18 @@
 <?php
 require_once "../db/connect.php";
 
+// Funktion som hämtar och returnerar HTML för ett album och dess låtar baserat på artist och albumnamn
 function getAlbum($data)
 {
     try {
-
+        // Hämta artist och album från inkommande data, default tom sträng om ej satt
         $artist = $data["artist"] ?? "";
         $album = $data["album"] ?? "";
 
+        // Anslut till databasen
         $pdo = connectToDb();
 
+        // SQL-fråga för att hämta albumdata tillsammans med dess låtar och artistinformation
         $sqlAlbum = "SELECT *
             FROM albums
             INNER JOIN songs ON songs.album = albums.rowid
@@ -20,12 +23,15 @@ function getAlbum($data)
         $stmtAlbum->execute([':albumname' => $album, ':artist' => $artist]);
         $rows = $stmtAlbum->fetchAll(PDO::FETCH_ASSOC);
 
+        // Antag att första raden innehåller grundläggande albumdata
         $albumData = $rows[0];
 
+        // Bygg HTML för låtlistan med inputfält för varje låt
         $songsInputs = "";
         $i = 1;
         foreach ($rows as $row) {
-            $title = htmlspecialchars($row['songname']); // säkerställa säker output
+            // Säkerställ att låtnamnet skrivs ut säkert (escaping)
+            $title = htmlspecialchars($row['songname']);
             $songsInputs .= <<<HTML
             <div class="song{$i}">
                 <label>
@@ -39,7 +45,10 @@ function getAlbum($data)
             $i++;
         }
 
+        // Escape för bildlänk
         $albumPicture = htmlspecialchars($albumData['picture'] ?? '');
+
+        // Returnera komplett HTML för redigeringsformulär för albumet inklusive låtar
         return <<<HTML
             <h1>Redigera album</h1>
             <form method="post">
@@ -78,10 +87,12 @@ function getAlbum($data)
                 </dialog>
         HTML;
     } catch (PDOException $e) {
+        // Visa felmeddelande vid databasfel
         echo "<p>Fel vid databaskoppling: " . $e->getMessage() . "</p>";
     }
 }
 
+// Hantera POST-förfrågan med artist och album för att returnera albumets data som HTML
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['artist']) && isset($_POST['album'])) {
     echo getAlbum($_POST);
 }

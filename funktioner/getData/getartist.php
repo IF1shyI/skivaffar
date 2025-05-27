@@ -1,19 +1,23 @@
 <?php
 require_once "../db/connect.php";
 
+// Funktion för att hämta och visa formulär för redigering av artist
 function getArtist($data)
 {
     try {
-
+        // Hämta artistnamn från inkommande data, eller tom sträng om ej satt
         $artist = $data["artist"] ?? "";
 
+        // Anslut till databasen
         $pdo = connectToDb();
 
+        // SQL-fråga för att hämta artistinformation baserat på artistnamn
         $sqlArtist = "SELECT * FROM artister WHERE artistname = :artistname LIMIT 1";
         $stmtArtist = $pdo->prepare($sqlArtist);
         $stmtArtist->execute([':artistname' => $artist]);
         $artistData = $stmtArtist->fetch(PDO::FETCH_ASSOC);
 
+        // Om ingen artist hittas, sätt tomma standardvärden
         if (!is_array($artistData)) {
             $artistData = [
                 'artistname' => '',
@@ -27,6 +31,7 @@ function getArtist($data)
             ];
         }
 
+        // Returnera HTML-formulär för redigering av artist med ifyllda värden
         return <<<HTML
             <h1>Redigera artist</h1> 
             <button type="button" class="submit-btn rm-album">🗑️ Ta bort artist + album</button>
@@ -76,10 +81,12 @@ function getArtist($data)
                 </dialog>
         HTML;
     } catch (PDOException $e) {
+        // Visa felmeddelande om databaskoppling misslyckas
         echo "<p>Fel vid databaskoppling: " . $e->getMessage() . "</p>";
     }
 }
 
+// Hantera POST-förfrågan för att hämta artistdata och visa formulär
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['artist'])) {
     echo getArtist($_POST);
 }
